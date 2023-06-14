@@ -1,66 +1,32 @@
 'use client';
 
 import clsx from 'clsx';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { LayoutGroup, motion } from 'framer-motion';
+import { name, about, bio, avatar } from 'lib/info';
 
 const navItems = {
   '/': {
-    name: 'home',
+    name: 'About',
   },
-  '/about': {
-    name: 'about',
-  },
-  '/blog': {
-    name: 'blog',
-  },
-  '/guestbook': {
-    name: 'guestbook',
+  '/log': {
+    name: 'Logs',
   },
 };
 
 function Logo() {
   return (
-    <Link aria-label="Lee Robinson" href="/">
-      <motion.svg
-        className="text-black dark:text-white h-[25px] md:h-[37px]"
-        width="25"
-        height="37"
-        viewBox="0 0 232 316"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <motion.path
-          initial={{
-            opacity: 0,
-            pathLength: 0,
-          }}
-          animate={{
-            opacity: 1,
-            pathLength: 1,
-          }}
-          transition={{
-            duration: 0.5,
-            type: 'spring',
-            stiffness: 50,
-          }}
-          d="M39 316V0"
-          stroke="currentColor"
-          strokeWidth={78}
-        />
-        <motion.path
-          initial={{ x: -200, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          transition={{
-            duration: 0.5,
-            type: 'spring',
-            stiffness: 50,
-          }}
-          d="M232 314.998H129.852L232 232.887V314.998Z"
-          fill="currentColor"
-        />
-      </motion.svg>
+    <Link aria-label="Matthew Park" href="/">
+      <Image
+        alt={name}
+        className="rounded-full grayscale"
+        src={avatar}
+        placeholder="blur"
+        width={30}
+        priority
+      />
     </Link>
   );
 }
@@ -79,10 +45,10 @@ export default function Navbar() {
         </div>
         <LayoutGroup>
           <nav
-            className="flex flex-row md:flex-col items-start relative px-4 md:px-0 pb-0 fade md:overflow-auto scroll-pr-6 md:relative"
+            className="relative flex flex-row items-start px-4 pb-0 md:flex-col md:px-0 fade md:overflow-auto scroll-pr-6 md:relative"
             id="nav"
           >
-            <div className="flex flex-row md:flex-col space-x-0 pr-10 mb-2 mt-2 md:mt-0">
+            <div className="flex flex-row pr-10 mt-2 mb-2 space-x-0 md:flex-col md:mt-0">
               {Object.entries(navItems).map(([path, { name }]) => {
                 const isActive = path === pathname;
                 return (
@@ -90,14 +56,14 @@ export default function Navbar() {
                     key={path}
                     href={path}
                     className={clsx(
-                      'transition-all hover:text-neutral-800 dark:hover:text-neutral-200 flex align-middle',
+                      'transition-all hover:text-neutral-800 dark:hover:text-neutral-200 flex align-middle ',
                       {
                         'text-neutral-500': !isActive,
                         'font-bold': isActive,
                       }
                     )}
                   >
-                    <span className="relative py-[5px] px-[10px]">
+                    <span className="relative py-[5px] px-[10px] text-xs">
                       {name}
                       {path === pathname ? (
                         <motion.div

@@ -2,13 +2,13 @@ import { allBlogs } from 'contentlayer/generated';
 
 export default async function sitemap() {
   const blogs = allBlogs.map((post) => ({
-    url: `https://leerob.io/blog/${post.slug}`,
+    url: `https://mattpark.org/blog/${post.slug}`,
     lastModified: post.publishedAt,
   }));
 
-  const routes = ['', '/about', '/blog', '/guestbook', '/uses'].map(
+  const routes = ['', '/about', '/blog'].map(
     (route) => ({
-      url: `https://leerob.io${route}`,
+      url: `https://mattpark.org${route}`,
       lastModified: new Date().toISOString().split('T')[0],
     })
   );
